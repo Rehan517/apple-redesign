@@ -4,9 +4,10 @@ import Link from 'next/link'
 import { SearchIcon, ShoppingBagIcon, UserIcon } from "@heroicons/react/outline"
 import { useSelector } from 'react-redux'
 import { selectBasketItems } from '@/redux/basketSlice'
+import { signIn, signOut, useSession } from 'next-auth/react'
 
 function Header() {
-    const session = false
+    const {data: session} = useSession();
     const items = useSelector(selectBasketItems);
     return (
         <header className='sticky top-0 z-30 flex w-full items-center justify-between bg-[#E7ECEE] p-4'>
@@ -38,14 +39,17 @@ function Header() {
                     </div>
                 </Link>
                 {session? (
-                    <Image src ={"https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
+                    <Image src ={session.user?.image ||
+                        "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y"
                 } alt=""
                     className='cursor-pointer rounded-full'
                     width={34}
-                    height={34}/>
+                    height={34}
+                    onClick = {() => signOut()}/>
+                    
                 ) :(
                     <UserIcon className='headerIcon' 
-                    // onClick={() =>signIn()}
+                    onClick={() =>signIn()}
                     />
                 )
 

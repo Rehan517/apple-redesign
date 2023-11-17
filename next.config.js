@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-}
+// const nextConfig = {
+//   reactStrictMode: true,
+// }
 
-module.exports = {nextConfig,
+module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["rb.gy", "cdn.sanity.io"],
+    domains: ["rb.gy", "cdn.sanity.io", "lh3.googleusercontent.com"],
   },
 }
