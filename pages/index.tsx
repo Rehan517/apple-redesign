@@ -20,7 +20,7 @@ interface Props {
 }
 
 const Home = ({ categories, products }: Props) => {
-  console.log(products);
+  // console.log(products);
 
   const showProducts = (category: number) =>{
     return products.filter((product) => product.category._ref == categories[category]._id).map((product) => (
